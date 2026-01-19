@@ -13,7 +13,7 @@ public class BankStatementCSVParserTest {
 
         final BankTransaction result = statementParser.parseFrom(line);
 
-        final BankTransaction expected = new BankTransaction(LocalDate.of(2017, Month.JANUARY,30), -50, "Tesco");
+        final BankTransaction expected = new BankTransaction(LocalDate.of(2017, Month.JANUARY, 30), -50, "Tesco");
         final double tolerance = 0.0d;
 
         Assert.assertEquals(expected.getDate(), result.getDate());
