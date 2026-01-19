@@ -4,16 +4,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class BankTransactionAnalyserSimples {
+public class BankStatementAnalyzer {
 
-    public static void main(final String... args) throws IOException {
-        final BankStatementCSVParser bankStatementCSVParser = new BankStatementCSVParser();
-        final Path path = Paths.get("src/extrato.csv");
+    public static void analyze(final String fileName, final BankStatementParser bankStatementParser) throws IOException {
+        final Path path = Paths.get(fileName);
         final List<String> lines = Files.readAllLines(path);
-
-        final List<BankTransaction> bankTransactions = bankStatementCSVParser.parseLinesFromCSV(lines);
+        final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFrom(lines);
         final BankStatementProcessor bankStatementProcessor = new BankStatementProcessor(bankTransactions);
-
         collectSummary(bankStatementProcessor);
     }
 
