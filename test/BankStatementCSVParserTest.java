@@ -20,4 +20,13 @@ public class BankStatementCSVParserTest {
         Assert.assertEquals(expected.getAmount(), result.getAmount(), tolerance);
         Assert.assertEquals(expected.getDescription(), result.getDescription());
     }
+
+    @Test
+    public void shouldParseDetectBlankLine() throws Exception {
+        final String line = "";
+
+        final boolean result = statementParser.isValidLine(line);
+        Assert.assertFalse(result);
+
+    }
 }

@@ -15,14 +15,27 @@ public class BankStatementCSVParser implements BankStatementParser {
         final String description = columns[2];
 
         return new BankTransaction(date, amount, description);
+
     }
 
     @Override
     public List<BankTransaction> parseLinesFrom(List<String> lines) {
         final List<BankTransaction> bankTransactions = new ArrayList<>();
         for(final String line : lines) {
-            bankTransactions.add(parseFrom(line));
+            if(isValidLine(line)) {
+                bankTransactions.add(parseFrom(line));
+            }
         }
         return bankTransactions;
+    }
+
+    @Override
+    public boolean isValidLine(String line) {
+        if(line.isEmpty()) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
